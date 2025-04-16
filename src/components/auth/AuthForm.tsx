@@ -44,7 +44,7 @@ type RegisterFormValues = z.infer<typeof registerSchema>;
 const AuthForm = () => {
   const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState(searchParams.get("register") ? "register" : "login");
-  const userType = searchParams.get("type") as UserRole || UserRole.SELLER;
+  const userType = searchParams.get("type") === UserRole.BUYER ? UserRole.BUYER : UserRole.SELLER;
 
   const loginForm = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),

@@ -57,3 +57,26 @@ export type HowItWorksStep = {
   description: string;
   icon: React.ElementType;
 };
+
+export type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  imageUrl: string;
+};
+
+export type FAQ = {
+  question: string;
+  answer: string;
+};
+
+export type ContactInfo = {
+  address: string[];
+  phone: string;
+  email: string;
+  socialLinks: {
+    name: string;
+    url: string;
+    icon: React.ElementType;
+  }[];
+};

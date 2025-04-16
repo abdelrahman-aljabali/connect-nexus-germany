@@ -48,7 +48,7 @@ const values = [
 
 const OurValues = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <section className="py-12 md:py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[40%] h-[40%] bg-gradient-to-br from-blue-50 to-cyan-50 rounded-full"></div>
@@ -56,21 +56,21 @@ const OurValues = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center justify-center mb-6">
-            <Heart className="h-8 w-8 text-red-500 mr-3" />
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
+          <div className="inline-flex items-center justify-center mb-4 md:mb-6">
+            <Heart className="h-6 w-6 md:h-8 md:w-8 text-red-500 mr-3" />
             <span className="h-px w-12 bg-gradient-to-r from-transparent to-red-500/20"></span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-teal">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-teal">
             Unsere Werte
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-base md:text-lg text-gray-600">
             Diese Grundsätze leiten unser Handeln und definieren, 
             wie wir mit unseren Kunden, Partnern und miteinander umgehen.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {values.map((value, index) => (
             <div 
               key={index}
@@ -80,14 +80,14 @@ const OurValues = () => {
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${value.color} rounded-2xl blur opacity-0 group-hover:opacity-50 transition-all duration-500 ${value.shadowColor}`}></div>
               
               <div 
-                className="relative bg-white rounded-2xl shadow-soft p-8 hover:shadow-soft-lg transition-all duration-300 group-hover:translate-y-[-5px] h-full animate-fade-in"
+                className="relative bg-white rounded-2xl shadow-soft p-5 md:p-8 hover:shadow-soft-lg transition-all duration-300 group-hover:translate-y-[-5px] h-full animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`h-16 w-16 rounded-2xl bg-gradient-to-r ${value.color} flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <value.icon className="h-8 w-8" />
+                <div className={`h-12 w-12 md:h-16 md:w-16 rounded-2xl bg-gradient-to-r ${value.color} flex items-center justify-center text-white shadow-md mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <value.icon className="h-6 w-6 md:h-8 md:w-8" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-blue group-hover:to-brand-teal transition-colors duration-300">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-blue group-hover:to-brand-teal transition-colors duration-300">{value.title}</h3>
+                <p className="text-sm md:text-base text-gray-600">{value.description}</p>
               </div>
             </div>
           ))}

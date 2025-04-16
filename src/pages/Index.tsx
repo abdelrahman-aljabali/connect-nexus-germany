@@ -1,13 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Helmet } from "react-helmet";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/home/Hero";
+import Features from "@/components/home/Features";
+import HowItWorks from "@/components/home/HowItWorks";
+import Testimonials from "@/components/home/Testimonials";
+import CallToAction from "@/components/home/CallToAction";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Connect.Now | Unternehmensnachfolge in Deutschland</title>
+        <meta name="description" content="Connect.Now ist die führende Plattform für Unternehmensnachfolge in Deutschland. Wir verbinden Verkäufer mit qualifizierten Käufern - diskret, sicher und professionell." />
+      </Helmet>
+      
+      <Navbar />
+      
+      <main>
+        <Hero />
+        <Features />
+        <HowItWorks />
+        <Testimonials />
+        <CallToAction />
+      </main>
+      
+      <Footer />
+    </>
   );
 };
 

@@ -6,8 +6,14 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <div className="container mx-auto">
+    <footer className="bg-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-brand-teal to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-brand-blue to-transparent rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link to="/" className="flex items-center mb-6">
@@ -17,41 +23,48 @@ const Footer = () => {
               Die Plattform für Unternehmensnachfolge in Deutschland. Wir verbinden Verkäufer mit den passenden Nachfolgern.
             </p>
             <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-brand-teal transition-colors">
+              <a href="#" aria-label="Facebook" className="bg-gray-800 hover:bg-brand-blue text-gray-400 hover:text-white p-2 rounded-lg transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="Twitter" className="text-gray-400 hover:text-brand-teal transition-colors">
+              <a href="#" aria-label="Twitter" className="bg-gray-800 hover:bg-brand-blue text-gray-400 hover:text-white p-2 rounded-lg transition-colors">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-brand-teal transition-colors">
+              <a href="#" aria-label="LinkedIn" className="bg-gray-800 hover:bg-brand-blue text-gray-400 hover:text-white p-2 rounded-lg transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-brand-teal transition-colors">
+              <a href="#" aria-label="Instagram" className="bg-gray-800 hover:bg-brand-blue text-gray-400 hover:text-white p-2 rounded-lg transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4">Services</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-lg mb-4 text-white relative inline-block">
+              Services
+              <span className="absolute -bottom-1 left-0 h-1 w-12 bg-gradient-to-r from-brand-blue to-brand-teal rounded-full"></span>
+            </h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/services/sellers" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/services/sellers" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   Für Verkäufer
                 </Link>
               </li>
               <li>
-                <Link to="/services/buyers" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/services/buyers" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   Für Käufer
                 </Link>
               </li>
               <li>
-                <Link to="/services/consultancy" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/services/consultancy" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   Beratung
                 </Link>
               </li>
               <li>
-                <Link to="/faqs" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/faqs" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   FAQs
                 </Link>
               </li>
@@ -59,25 +72,32 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4">Unternehmen</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-lg mb-4 text-white relative inline-block">
+              Unternehmen
+              <span className="absolute -bottom-1 left-0 h-1 w-12 bg-gradient-to-r from-brand-blue to-brand-teal rounded-full"></span>
+            </h3>
+            <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/about" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   Über uns
                 </Link>
               </li>
               <li>
-                <Link to="/team" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/team" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   Team
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/blog" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/careers" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Link to="/careers" className="text-gray-400 hover:text-brand-teal transition-colors flex items-center">
+                  <span className="h-1 w-2 bg-brand-teal/50 rounded-full mr-2"></span>
                   Karriere
                 </Link>
               </li>
@@ -85,24 +105,33 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4">Kontakt</h3>
+            <h3 className="font-semibold text-lg mb-4 text-white relative inline-block">
+              Kontakt
+              <span className="absolute -bottom-1 left-0 h-1 w-12 bg-gradient-to-r from-brand-blue to-brand-teal rounded-full"></span>
+            </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 mr-2 text-brand-teal shrink-0 mt-0.5" />
+                <div className="bg-gray-800 p-2 rounded-lg text-brand-teal mr-3 mt-0.5">
+                  <MapPin className="h-5 w-5" />
+                </div>
                 <span className="text-gray-400">
-                  Musterstraße 123<br />
-                  10115 Berlin<br />
+                  Südbahnstr. 4<br />
+                  09111 Chemnitz<br />
                   Deutschland
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 mr-2 text-brand-teal shrink-0" />
-                <a href="tel:+4930123456789" className="text-gray-400 hover:text-brand-teal transition-colors">
-                  +49 30 123 456 789
+                <div className="bg-gray-800 p-2 rounded-lg text-brand-teal mr-3">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <a href="tel:+4917655739750" className="text-gray-400 hover:text-brand-teal transition-colors">
+                  +49 176 55739750
                 </a>
               </li>
               <li className="flex items-center">
-                <Mail className="h-5 w-5 mr-2 text-brand-teal shrink-0" />
+                <div className="bg-gray-800 p-2 rounded-lg text-brand-teal mr-3">
+                  <Mail className="h-5 w-5" />
+                </div>
                 <a href="mailto:info@connect-now.de" className="text-gray-400 hover:text-brand-teal transition-colors">
                   info@connect-now.de
                 </a>

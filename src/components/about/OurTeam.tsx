@@ -10,19 +10,19 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Jan-Olav Henck",
     role: "Gründer & CEO",
     bio: "30 Jahre internationale Erfahrung in Führungspositionen in der Pharmaindustrie.",
-    imageUrl: "https://randomuser.me/api/portraits/men/32.jpg"
+    imageUrl: "/lovable-uploads/2eed3487-7338-4578-aad4-e1969c646162.png"
   },
   {
     name: "Adrian Tobisch",
     role: "COO",
     bio: "15 Jahre in Führungspositionen in der Fertigung sowie Aufbau und Verkauf von zwei Unternehmen.",
-    imageUrl: "https://randomuser.me/api/portraits/men/44.jpg"
+    imageUrl: "/lovable-uploads/65659df0-e4fd-4300-bed8-315ad1b97014.png"
   },
   {
     name: "Abdelrahman Aljabali",
     role: "CTO",
     bio: "Technologievisionär mit umfangreicher Erfahrung in der Entwicklung innovativer digitaler Lösungen.",
-    imageUrl: "https://randomuser.me/api/portraits/men/67.jpg"
+    imageUrl: "/lovable-uploads/321549e1-f430-4762-95d8-88d8c4f87bf7.png"
   }
 ];
 

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -43,6 +43,7 @@ type RegisterFormValues = z.infer<typeof registerSchema>;
 
 const AuthForm = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(searchParams.get("register") ? "register" : "login");
   const userType = searchParams.get("type") === UserRole.BUYER ? UserRole.BUYER : UserRole.SELLER;
 
@@ -66,25 +67,63 @@ const AuthForm = () => {
   });
 
   const onLoginSubmit = (values: LoginFormValues) => {
-    console.log("Login values:", values);
-    // Here you would handle authentication
+    console.log("Demo Login values:", values);
+    
+    // Store demo user data in localStorage
+    const demoUser = {
+      id: "demo-user-1",
+      name: "Max Mustermann",
+      email: values.email || "max@beispiel.de",
+      role: UserRole.SELLER,
+      isLoggedIn: true
+    };
+    
+    localStorage.setItem("demoUser", JSON.stringify(demoUser));
+    
     toast({
       title: "Anmeldung erfolgreich",
       description: "Sie werden zum Dashboard weitergeleitet...",
     });
+    
+    // Redirect to dashboard after a short delay
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1000);
   };
 
   const onRegisterSubmit = (values: RegisterFormValues) => {
-    console.log("Register values:", values);
-    // Here you would handle registration
+    console.log("Demo Register values:", values);
+    
+    // Store demo user data in localStorage
+    const demoUser = {
+      id: "demo-user-1",
+      name: values.name || "Max Mustermann",
+      email: values.email || "max@beispiel.de",
+      role: values.role,
+      isLoggedIn: true
+    };
+    
+    localStorage.setItem("demoUser", JSON.stringify(demoUser));
+    
     toast({
       title: "Registrierung erfolgreich",
-      description: "Bitte überprüfen Sie Ihre E-Mail-Adresse, um Ihr Konto zu bestätigen.",
+      description: "Sie werden zum Dashboard weitergeleitet...",
     });
+    
+    // Redirect to dashboard after a short delay
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1000);
   };
 
   return (
     <div className="max-w-md w-full mx-auto p-6 bg-white rounded-2xl shadow-soft border border-gray-100">
+      <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+        <p className="text-sm text-blue-700 text-center">
+          <strong>Demo Modus:</strong> Verwenden Sie beliebige Daten - echte Authentifizierung ist nicht erforderlich.
+        </p>
+      </div>
+
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-8">
           <TabsTrigger value="login">Login</TabsTrigger>

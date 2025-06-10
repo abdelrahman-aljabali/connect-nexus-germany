@@ -1,6 +1,6 @@
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -14,6 +14,30 @@ import { Bell, LogOut, Settings, User, Menu } from "lucide-react";
 
 const DashboardNavbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [userName, setUserName] = useState("Max Mustermann");
+  const [userEmail, setUserEmail] = useState("max@beispiel.de");
+  const [userInitials, setUserInitials] = useState("MU");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Get demo user data from localStorage
+    const demoUserData = localStorage.getItem("demoUser");
+    if (demoUserData) {
+      const user = JSON.parse(demoUserData);
+      setUserName(user.name || "Max Mustermann");
+      setUserEmail(user.email || "max@beispiel.de");
+      
+      // Generate initials from name
+      const nameParts = user.name?.split(" ") || ["Max", "Mustermann"];
+      const initials = nameParts.map(part => part.charAt(0)).join("").toUpperCase();
+      setUserInitials(initials);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("demoUser");
+    navigate("/");
+  };
 
   return (
     <nav className="bg-white border-b border-gray-200 px-4 lg:px-6 py-3">
@@ -53,14 +77,14 @@ const DashboardNavbar = () => {
               <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                 <Avatar className="h-10 w-10">
                   <AvatarImage src="/placeholder-avatar.jpg" alt="Profile" />
-                  <AvatarFallback>MU</AvatarFallback>
+                  <AvatarFallback>{userInitials}</AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 bg-white" align="end" forceMount>
               <div className="flex flex-col space-y-1 p-2">
-                <p className="text-sm font-medium">Max Mustermann</p>
-                <p className="text-xs text-gray-500">max@beispiel.de</p>
+                <p className="text-sm font-medium">{userName}</p>
+                <p className="text-xs text-gray-500">{userEmail}</p>
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
@@ -72,7 +96,7 @@ const DashboardNavbar = () => {
                 Einstellungen
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-red-600">
+              <DropdownMenuItem className="text-red-600" onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 Abmelden
               </DropdownMenuItem>

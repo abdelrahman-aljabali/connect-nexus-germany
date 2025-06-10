@@ -78,12 +78,12 @@ const demoMatches = [
 
 const MatchesMain = () => {
   const [filters, setFilters] = useState({
-    location: "",
-    industry: "",
+    location: "all",
+    industry: "all",
     revenueMin: "",
     revenueMax: "",
-    employees: "",
-    matchScore: ""
+    employees: "all",
+    matchScore: "all"
   });
 
   const [filteredMatches, setFilteredMatches] = useState(demoMatches);
@@ -126,7 +126,7 @@ const MatchesMain = () => {
                     <SelectValue placeholder="All locations" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="">All locations</SelectItem>
+                    <SelectItem value="all">All locations</SelectItem>
                     <SelectItem value="berlin">Berlin</SelectItem>
                     <SelectItem value="munich">Munich</SelectItem>
                     <SelectItem value="hamburg">Hamburg</SelectItem>
@@ -144,7 +144,7 @@ const MatchesMain = () => {
                     <SelectValue placeholder="All industries" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="">All industries</SelectItem>
+                    <SelectItem value="all">All industries</SelectItem>
                     <SelectItem value="software">Software Development</SelectItem>
                     <SelectItem value="energy">Clean Energy</SelectItem>
                     <SelectItem value="marketing">Marketing</SelectItem>
@@ -178,7 +178,7 @@ const MatchesMain = () => {
                     <SelectValue placeholder="All sizes" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="">All sizes</SelectItem>
+                    <SelectItem value="all">All sizes</SelectItem>
                     <SelectItem value="1-10">1-10 employees</SelectItem>
                     <SelectItem value="11-25">11-25 employees</SelectItem>
                     <SelectItem value="26-50">26-50 employees</SelectItem>
@@ -194,7 +194,7 @@ const MatchesMain = () => {
                     <SelectValue placeholder="All scores" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="">All scores</SelectItem>
+                    <SelectItem value="all">All scores</SelectItem>
                     <SelectItem value="90+">90%+ match</SelectItem>
                     <SelectItem value="80+">80%+ match</SelectItem>
                     <SelectItem value="70+">70%+ match</SelectItem>
@@ -203,7 +203,7 @@ const MatchesMain = () => {
               </div>
 
               <Button 
-                onClick={() => setFilters({location: "", industry: "", revenueMin: "", revenueMax: "", employees: "", matchScore: ""})}
+                onClick={() => setFilters({location: "all", industry: "all", revenueMin: "", revenueMax: "", employees: "all", matchScore: "all"})}
                 variant="outline" 
                 className="w-full"
               >

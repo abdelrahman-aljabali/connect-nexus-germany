@@ -12,10 +12,17 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  
+  // Check if user is logged in
+  useEffect(() => {
+    const demoUser = localStorage.getItem("demoUser");
+    setIsLoggedIn(!!demoUser);
+  }, [location]);
   
   // Close mobile menu when route changes
   useEffect(() => {
@@ -48,6 +55,9 @@ const Navbar = () => {
           <Link to="/" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/' ? 'text-brand-blue font-medium' : ''}`}>
             Home
           </Link>
+          <Link to="/matches" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/matches' ? 'text-brand-blue font-medium' : ''}`}>
+            Matches
+          </Link>
           <Link to="/about" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/about' ? 'text-brand-blue font-medium' : ''}`}>
             About
           </Link>
@@ -72,18 +82,20 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="hidden md:flex items-center space-x-4">
-          <Link to="/auth">
-            <Button variant="outline" className="rounded-2xl text-sm">
-              Login
-            </Button>
-          </Link>
-          <Link to="/auth?register=true">
-            <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl text-sm">
-              Register
-            </Button>
-          </Link>
-        </div>
+        {!isLoggedIn && (
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/auth">
+              <Button variant="outline" className="rounded-2xl text-sm">
+                Login
+              </Button>
+            </Link>
+            <Link to="/auth?register=true">
+              <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl text-sm">
+                Register
+              </Button>
+            </Link>
+          </div>
+        )}
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
@@ -104,6 +116,9 @@ const Navbar = () => {
             <Link to="/" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/' ? 'text-brand-blue font-medium' : ''}`}>
               Home
             </Link>
+            <Link to="/matches" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/matches' ? 'text-brand-blue font-medium' : ''}`}>
+              Matches
+            </Link>
             <Link to="/about" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/about' ? 'text-brand-blue font-medium' : ''}`}>
               About
             </Link>
@@ -121,18 +136,20 @@ const Navbar = () => {
             <Link to="/contact" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/contact' ? 'text-brand-blue font-medium' : ''}`}>
               Contact
             </Link>
-            <div className="flex flex-col space-y-2 mt-4">
-              <Link to="/auth" onClick={toggleMenu}>
-                <Button variant="outline" className="w-full rounded-2xl">
-                  Login
-                </Button>
-              </Link>
-              <Link to="/auth?register=true" onClick={toggleMenu}>
-                <Button className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl">
-                  Register
-                </Button>
-              </Link>
-            </div>
+            {!isLoggedIn && (
+              <div className="flex flex-col space-y-2 mt-4">
+                <Link to="/auth" onClick={toggleMenu}>
+                  <Button variant="outline" className="w-full rounded-2xl">
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/auth?register=true" onClick={toggleMenu}>
+                  <Button className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl">
+                    Register
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       )}

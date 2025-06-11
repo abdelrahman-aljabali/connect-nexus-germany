@@ -19,16 +19,16 @@ const Matches = () => {
     setIsLoggedIn(!!demoUser);
   }, []);
 
-  if (isDashboard || isLoggedIn) {
+  if (isDashboard) {
     return (
       <>
         <Helmet>
-          <title>Matches | Connect.Now</title>
-          <meta name="description" content="Find your perfect business match" />
+          <title>Alle Inserate | Connect.Now</title>
+          <meta name="description" content="Finden Sie Ihr perfektes Unternehmen" />
         </Helmet>
         
         <div className="min-h-screen bg-gray-50">
-          <DashboardNavbar />
+          <Navbar />
           <div className="flex">
             <DashboardSidebar />
             <MatchesMain />
@@ -41,8 +41,8 @@ const Matches = () => {
   return (
     <>
       <Helmet>
-        <title>Matches | Connect.Now</title>
-        <meta name="description" content="Find your perfect business match" />
+        <title>Alle Inserate | Connect.Now</title>
+        <meta name="description" content="Finden Sie Ihr perfektes Unternehmen" />
       </Helmet>
       
       <Navbar />

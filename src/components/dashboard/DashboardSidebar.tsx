@@ -23,7 +23,7 @@ const sidebarItems = [
     icon: User,
   },
   {
-    title: "Matches",
+    title: "Alle Inserate",
     href: "/dashboard/matches",
     icon: Heart,
   },

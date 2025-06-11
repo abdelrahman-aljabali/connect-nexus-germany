@@ -43,23 +43,28 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("demoUser");
+    window.location.href = "/";
+  };
+
   return (
     <nav className={`bg-white py-3 md:py-4 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}>
       <div className="container mx-auto flex justify-between items-center px-4">
-        <Link to="/" className="flex items-center">
+        <Link to={isLoggedIn ? "/dashboard" : "/"} className="flex items-center">
           <span className="font-bold text-xl md:text-2xl text-brand-blue">Connect<span className="text-brand-teal">.</span>Now</span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
           <Link to="/" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/' ? 'text-brand-blue font-medium' : ''}`}>
-            Home
+            Start
           </Link>
-          <Link to="/matches" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/matches' ? 'text-brand-blue font-medium' : ''}`}>
-            Matches
+          <Link to="/matches" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/matches' || location.pathname === '/dashboard/matches' ? 'text-brand-blue font-medium' : ''}`}>
+            Alle Inserate
           </Link>
           <Link to="/about" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/about' ? 'text-brand-blue font-medium' : ''}`}>
-            About
+            Über uns
           </Link>
           <div className="relative group">
             <button className="flex items-center text-gray-700 hover:text-brand-blue transition-colors">
@@ -67,31 +72,37 @@ const Navbar = () => {
             </button>
             <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-10 hidden group-hover:block">
               <Link to="/services/sellers" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-blue">
-                For Sellers
+                Für Verkäufer
               </Link>
               <Link to="/services/buyers" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-blue">
-                For Buyers
+                Für Käufer
               </Link>
               <Link to="/services/consultancy" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-blue">
-                Consultancy
+                Beratung
               </Link>
             </div>
           </div>
           <Link to="/contact" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/contact' ? 'text-brand-blue font-medium' : ''}`}>
-            Contact
+            Kontakt
           </Link>
+          
+          {isLoggedIn && (
+            <Button onClick={handleLogout} variant="outline" className="rounded-2xl text-sm">
+              Abmelden
+            </Button>
+          )}
         </div>
 
         {!isLoggedIn && (
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/auth">
               <Button variant="outline" className="rounded-2xl text-sm">
-                Login
+                Anmelden
               </Button>
             </Link>
             <Link to="/auth?register=true">
               <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl text-sm">
-                Register
+                Registrieren
               </Button>
             </Link>
           </div>
@@ -102,7 +113,7 @@ const Navbar = () => {
           <button
             onClick={toggleMenu}
             className="text-gray-700 hover:text-brand-blue"
-            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+            aria-label={isMenuOpen ? "Menü schließen" : "Menü öffnen"}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -114,38 +125,43 @@ const Navbar = () => {
         <div className="md:hidden px-4 py-4 mt-2 bg-white shadow-md absolute left-0 right-0 max-h-[80vh] overflow-y-auto">
           <div className="flex flex-col space-y-3">
             <Link to="/" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/' ? 'text-brand-blue font-medium' : ''}`}>
-              Home
+              Start
             </Link>
-            <Link to="/matches" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/matches' ? 'text-brand-blue font-medium' : ''}`}>
-              Matches
+            <Link to="/matches" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/matches' || location.pathname === '/dashboard/matches' ? 'text-brand-blue font-medium' : ''}`}>
+              Alle Inserate
             </Link>
             <Link to="/about" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/about' ? 'text-brand-blue font-medium' : ''}`}>
-              About
+              Über uns
             </Link>
             <div className="border-t border-gray-200 my-2"></div>
             <Link to="/services/sellers" onClick={toggleMenu} className="text-gray-700 hover:text-brand-blue py-2 pl-4">
-              For Sellers
+              Für Verkäufer
             </Link>
             <Link to="/services/buyers" onClick={toggleMenu} className="text-gray-700 hover:text-brand-blue py-2 pl-4">
-              For Buyers
+              Für Käufer
             </Link>
             <Link to="/services/consultancy" onClick={toggleMenu} className="text-gray-700 hover:text-brand-blue py-2 pl-4">
-              Consultancy
+              Beratung
             </Link>
             <div className="border-t border-gray-200 my-2"></div>
             <Link to="/contact" onClick={toggleMenu} className={`text-gray-700 hover:text-brand-blue py-2 ${location.pathname === '/contact' ? 'text-brand-blue font-medium' : ''}`}>
-              Contact
+              Kontakt
             </Link>
-            {!isLoggedIn && (
+            
+            {isLoggedIn ? (
+              <Button onClick={handleLogout} variant="outline" className="w-full rounded-2xl mt-4">
+                Abmelden
+              </Button>
+            ) : (
               <div className="flex flex-col space-y-2 mt-4">
                 <Link to="/auth" onClick={toggleMenu}>
                   <Button variant="outline" className="w-full rounded-2xl">
-                    Login
+                    Anmelden
                   </Button>
                 </Link>
                 <Link to="/auth?register=true" onClick={toggleMenu}>
                   <Button className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl">
-                    Register
+                    Registrieren
                   </Button>
                 </Link>
               </div>

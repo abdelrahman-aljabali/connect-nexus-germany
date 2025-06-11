@@ -11,24 +11,24 @@ const demoMatches = [
   {
     id: 1,
     name: "TechSoft Solutions GmbH",
-    industry: "Software Development",
+    industry: "Software Entwicklung",
     location: "Berlin",
-    revenue: "2.5M",
+    revenue: "2,5M",
     employees: 15,
     matchScore: 92,
     status: "confirmed",
-    description: "Leading software development company specializing in enterprise solutions."
+    description: "Führendes Software-Entwicklungsunternehmen spezialisiert auf Unternehmenslösungen."
   },
   {
     id: 2,
     name: "GreenTech Innovations",
-    industry: "Clean Energy",
-    location: "Munich",
-    revenue: "1.8M",
+    industry: "Saubere Energie",
+    location: "München",
+    revenue: "1,8M",
     employees: 12,
     matchScore: 88,
     status: "shortlisted",
-    description: "Innovative clean energy solutions for sustainable future."
+    description: "Innovative Lösungen für saubere Energie für eine nachhaltige Zukunft."
   },
   {
     id: 3,
@@ -39,40 +39,40 @@ const demoMatches = [
     employees: 8,
     matchScore: 84,
     status: "new",
-    description: "Full-service digital marketing agency with proven track record."
+    description: "Full-Service Digital Marketing Agentur mit nachgewiesener Erfolgsbilanz."
   },
   {
     id: 4,
     name: "MedTech Devices AG",
-    industry: "Medical Technology",
+    industry: "Medizintechnik",
     location: "Frankfurt",
-    revenue: "3.2M",
+    revenue: "3,2M",
     employees: 25,
     matchScore: 91,
     status: "confirmed",
-    description: "Medical device manufacturer with international presence."
+    description: "Medizingerätehersteller mit internationaler Präsenz."
   },
   {
     id: 5,
     name: "AutoParts Excellence",
     industry: "Automotive",
     location: "Stuttgart",
-    revenue: "4.1M",
+    revenue: "4,1M",
     employees: 35,
     matchScore: 87,
     status: "new",
-    description: "Premium automotive parts supplier to major manufacturers."
+    description: "Premium Automobilteile-Lieferant für große Hersteller."
   },
   {
     id: 6,
     name: "FoodTech Solutions",
-    industry: "Food Technology",
-    location: "Cologne",
-    revenue: "1.2M",
+    industry: "Lebensmitteltechnologie",
+    location: "Köln",
+    revenue: "1,2M",
     employees: 10,
     matchScore: 82,
     status: "shortlisted",
-    description: "Innovative food processing technology company."
+    description: "Innovative Lebensmittelverarbeitungstechnologie-Unternehmen."
   }
 ];
 
@@ -98,17 +98,17 @@ const MatchesMain = () => {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "confirmed": return "Confirmed Match";
-      case "shortlisted": return "Shortlisted";
-      default: return "New Match";
+      case "confirmed": return "Bestätigtes Match";
+      case "shortlisted": return "Auf Merkliste";
+      default: return "Neues Match";
     }
   };
 
   return (
     <div className="flex-1 p-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Business Matches</h1>
-        <p className="text-gray-600">Discover your perfect business partnership opportunities</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Alle Inserate</h1>
+        <p className="text-gray-600">Entdecken Sie perfekte Geschäftspartnerschaftsmöglichkeiten</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -116,47 +116,47 @@ const MatchesMain = () => {
         <div className="lg:col-span-1">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Filters</CardTitle>
+              <CardTitle className="text-lg">Filter</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Location</label>
+                <label className="block text-sm font-medium mb-2">Standort</label>
                 <Select value={filters.location} onValueChange={(value) => setFilters({...filters, location: value})}>
                   <SelectTrigger>
-                    <SelectValue placeholder="All locations" />
+                    <SelectValue placeholder="Alle Standorte" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="all">All locations</SelectItem>
+                    <SelectItem value="all">Alle Standorte</SelectItem>
                     <SelectItem value="berlin">Berlin</SelectItem>
-                    <SelectItem value="munich">Munich</SelectItem>
+                    <SelectItem value="munich">München</SelectItem>
                     <SelectItem value="hamburg">Hamburg</SelectItem>
                     <SelectItem value="frankfurt">Frankfurt</SelectItem>
                     <SelectItem value="stuttgart">Stuttgart</SelectItem>
-                    <SelectItem value="cologne">Cologne</SelectItem>
+                    <SelectItem value="cologne">Köln</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Industry</label>
+                <label className="block text-sm font-medium mb-2">Branche</label>
                 <Select value={filters.industry} onValueChange={(value) => setFilters({...filters, industry: value})}>
                   <SelectTrigger>
-                    <SelectValue placeholder="All industries" />
+                    <SelectValue placeholder="Alle Branchen" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="all">All industries</SelectItem>
-                    <SelectItem value="software">Software Development</SelectItem>
-                    <SelectItem value="energy">Clean Energy</SelectItem>
+                    <SelectItem value="all">Alle Branchen</SelectItem>
+                    <SelectItem value="software">Software Entwicklung</SelectItem>
+                    <SelectItem value="energy">Saubere Energie</SelectItem>
                     <SelectItem value="marketing">Marketing</SelectItem>
-                    <SelectItem value="medical">Medical Technology</SelectItem>
+                    <SelectItem value="medical">Medizintechnik</SelectItem>
                     <SelectItem value="automotive">Automotive</SelectItem>
-                    <SelectItem value="food">Food Technology</SelectItem>
+                    <SelectItem value="food">Lebensmitteltechnologie</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Revenue Range</label>
+                <label className="block text-sm font-medium mb-2">Umsatzbereich</label>
                 <div className="grid grid-cols-2 gap-2">
                   <Input 
                     placeholder="Min" 
@@ -172,17 +172,17 @@ const MatchesMain = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Company Size</label>
+                <label className="block text-sm font-medium mb-2">Unternehmensgröße</label>
                 <Select value={filters.employees} onValueChange={(value) => setFilters({...filters, employees: value})}>
                   <SelectTrigger>
-                    <SelectValue placeholder="All sizes" />
+                    <SelectValue placeholder="Alle Größen" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="all">All sizes</SelectItem>
-                    <SelectItem value="1-10">1-10 employees</SelectItem>
-                    <SelectItem value="11-25">11-25 employees</SelectItem>
-                    <SelectItem value="26-50">26-50 employees</SelectItem>
-                    <SelectItem value="50+">50+ employees</SelectItem>
+                    <SelectItem value="all">Alle Größen</SelectItem>
+                    <SelectItem value="1-10">1-10 Mitarbeiter</SelectItem>
+                    <SelectItem value="11-25">11-25 Mitarbeiter</SelectItem>
+                    <SelectItem value="26-50">26-50 Mitarbeiter</SelectItem>
+                    <SelectItem value="50+">50+ Mitarbeiter</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -191,13 +191,13 @@ const MatchesMain = () => {
                 <label className="block text-sm font-medium mb-2">Match Score</label>
                 <Select value={filters.matchScore} onValueChange={(value) => setFilters({...filters, matchScore: value})}>
                   <SelectTrigger>
-                    <SelectValue placeholder="All scores" />
+                    <SelectValue placeholder="Alle Scores" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value="all">All scores</SelectItem>
-                    <SelectItem value="90+">90%+ match</SelectItem>
-                    <SelectItem value="80+">80%+ match</SelectItem>
-                    <SelectItem value="70+">70%+ match</SelectItem>
+                    <SelectItem value="all">Alle Scores</SelectItem>
+                    <SelectItem value="90+">90%+ Match</SelectItem>
+                    <SelectItem value="80+">80%+ Match</SelectItem>
+                    <SelectItem value="70+">70%+ Match</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -207,7 +207,7 @@ const MatchesMain = () => {
                 variant="outline" 
                 className="w-full"
               >
-                Clear Filters
+                Filter zurücksetzen
               </Button>
             </CardContent>
           </Card>
@@ -245,17 +245,17 @@ const MatchesMain = () => {
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <Euro className="h-4 w-4 text-gray-500" />
-                      <span>{match.revenue} Revenue</span>
+                      <span>{match.revenue} Umsatz</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <Users className="h-4 w-4 text-gray-500" />
-                      <span>{match.employees} Employees</span>
+                      <span>{match.employees} Mitarbeiter</span>
                     </div>
                   </div>
 
                   <div className="flex gap-2">
                     <Button className="flex-1" size="sm">
-                      View Profile
+                      Profil ansehen
                     </Button>
                     <Button variant="outline" size="sm" className="flex items-center gap-1">
                       <Heart className="h-4 w-4" />

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Heart, MessageSquare, Star, MapPin, Euro, Users } from "lucide-react";
+import { Heart, MessageSquare, Star, MapPin, Euro, Users, Search, Filter } from "lucide-react";
 
 const demoMatches = [
   {
@@ -17,7 +17,8 @@ const demoMatches = [
     employees: 15,
     matchScore: 92,
     status: "confirmed",
-    description: "Führendes Software-Entwicklungsunternehmen spezialisiert auf Unternehmenslösungen."
+    description: "Führendes Software-Entwicklungsunternehmen spezialisiert auf Unternehmenslösungen.",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=250&fit=crop"
   },
   {
     id: 2,
@@ -28,7 +29,8 @@ const demoMatches = [
     employees: 12,
     matchScore: 88,
     status: "shortlisted",
-    description: "Innovative Lösungen für saubere Energie für eine nachhaltige Zukunft."
+    description: "Innovative Lösungen für saubere Energie für eine nachhaltige Zukunft.",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop"
   },
   {
     id: 3,
@@ -39,7 +41,8 @@ const demoMatches = [
     employees: 8,
     matchScore: 84,
     status: "new",
-    description: "Full-Service Digital Marketing Agentur mit nachgewiesener Erfolgsbilanz."
+    description: "Full-Service Digital Marketing Agentur mit nachgewiesener Erfolgsbilanz.",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=250&fit=crop"
   },
   {
     id: 4,
@@ -50,7 +53,8 @@ const demoMatches = [
     employees: 25,
     matchScore: 91,
     status: "confirmed",
-    description: "Medizingerätehersteller mit internationaler Präsenz."
+    description: "Medizingerätehersteller mit internationaler Präsenz.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop"
   },
   {
     id: 5,
@@ -61,7 +65,8 @@ const demoMatches = [
     employees: 35,
     matchScore: 87,
     status: "new",
-    description: "Premium Automobilteile-Lieferant für große Hersteller."
+    description: "Premium Automobilteile-Lieferant für große Hersteller.",
+    image: "https://images.unsplash.com/photo-1486718448742-163732cd1544?w=400&h=250&fit=crop"
   },
   {
     id: 6,
@@ -72,12 +77,14 @@ const demoMatches = [
     employees: 10,
     matchScore: 82,
     status: "shortlisted",
-    description: "Innovative Lebensmittelverarbeitungstechnologie-Unternehmen."
+    description: "Innovative Lebensmittelverarbeitungstechnologie-Unternehmen.",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=250&fit=crop"
   }
 ];
 
 const MatchesMain = () => {
   const [filters, setFilters] = useState({
+    search: "",
     location: "all",
     industry: "all",
     revenueMin: "",
@@ -87,6 +94,7 @@ const MatchesMain = () => {
   });
 
   const [filteredMatches, setFilteredMatches] = useState(demoMatches);
+  const [showFilters, setShowFilters] = useState(false);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -104,21 +112,77 @@ const MatchesMain = () => {
     }
   };
 
+  const handleSearch = (searchTerm: string) => {
+    setFilters({...filters, search: searchTerm});
+    if (searchTerm.trim() === "") {
+      setFilteredMatches(demoMatches);
+    } else {
+      const filtered = demoMatches.filter(match => 
+        match.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        match.industry.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        match.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredMatches(filtered);
+    }
+  };
+
+  const resetFilters = () => {
+    setFilters({
+      search: "",
+      location: "all",
+      industry: "all",
+      revenueMin: "",
+      revenueMax: "",
+      employees: "all",
+      matchScore: "all"
+    });
+    setFilteredMatches(demoMatches);
+  };
+
   return (
-    <div className="flex-1 p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Alle Inserate</h1>
-        <p className="text-gray-600">Entdecken Sie perfekte Geschäftspartnerschaftsmöglichkeiten</p>
+    <div className="flex-1 p-6 max-w-7xl mx-auto">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">Alle Inserate</h1>
+        <p className="text-gray-600 text-lg">Entdecken Sie perfekte Geschäftspartnerschaftsmöglichkeiten</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Filters Sidebar */}
-        <div className="lg:col-span-1">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Filter</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+      {/* Search Bar */}
+      <div className="mb-6">
+        <div className="relative max-w-2xl">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Input
+            type="text"
+            placeholder="Unternehmen, Branche oder Beschreibung durchsuchen..."
+            value={filters.search}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="pl-10 pr-4 py-3 text-lg"
+          />
+        </div>
+      </div>
+
+      {/* Filter Toggle Button */}
+      <div className="mb-6">
+        <Button
+          variant="outline"
+          onClick={() => setShowFilters(!showFilters)}
+          className="flex items-center gap-2"
+        >
+          <Filter className="h-4 w-4" />
+          {showFilters ? "Filter ausblenden" : "Erweiterte Filter"}
+        </Button>
+      </div>
+
+      {/* Advanced Filters */}
+      {showFilters && (
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <Filter className="h-5 w-5" />
+              Erweiterte Filter
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
               <div>
                 <label className="block text-sm font-medium mb-2">Standort</label>
                 <Select value={filters.location} onValueChange={(value) => setFilters({...filters, location: value})}>
@@ -156,19 +220,21 @@ const MatchesMain = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Umsatzbereich</label>
-                <div className="grid grid-cols-2 gap-2">
-                  <Input 
-                    placeholder="Min" 
-                    value={filters.revenueMin}
-                    onChange={(e) => setFilters({...filters, revenueMin: e.target.value})}
-                  />
-                  <Input 
-                    placeholder="Max" 
-                    value={filters.revenueMax}
-                    onChange={(e) => setFilters({...filters, revenueMax: e.target.value})}
-                  />
-                </div>
+                <label className="block text-sm font-medium mb-2">Min. Umsatz</label>
+                <Input 
+                  placeholder="z.B. 500K" 
+                  value={filters.revenueMin}
+                  onChange={(e) => setFilters({...filters, revenueMin: e.target.value})}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Max. Umsatz</label>
+                <Input 
+                  placeholder="z.B. 5M" 
+                  value={filters.revenueMax}
+                  onChange={(e) => setFilters({...filters, revenueMax: e.target.value})}
+                />
               </div>
 
               <div>
@@ -201,75 +267,102 @@ const MatchesMain = () => {
                   </SelectContent>
                 </Select>
               </div>
+            </div>
 
-              <Button 
-                onClick={() => setFilters({location: "all", industry: "all", revenueMin: "", revenueMax: "", employees: "all", matchScore: "all"})}
-                variant="outline" 
-                className="w-full"
-              >
+            <div className="mt-6 flex gap-4">
+              <Button onClick={resetFilters} variant="outline">
                 Filter zurücksetzen
               </Button>
+              <Button>
+                Filter anwenden
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Results Count */}
+      <div className="mb-6">
+        <p className="text-gray-600">
+          <span className="font-semibold text-brand-blue">{filteredMatches.length}</span> Inserate gefunden
+        </p>
+      </div>
+
+      {/* Matches Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredMatches.map((match) => (
+          <Card key={match.id} className="hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <div className="relative">
+              <img 
+                src={match.image} 
+                alt={match.name}
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute top-4 right-4">
+                <Badge className={getStatusColor(match.status)}>
+                  {getStatusText(match.status)}
+                </Badge>
+              </div>
+              <div className="absolute top-4 left-4">
+                <div className="flex items-center gap-1 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                  <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                  <span className="font-semibold text-sm">{match.matchScore}%</span>
+                </div>
+              </div>
+            </div>
+
+            <CardHeader className="pb-3">
+              <div>
+                <CardTitle className="text-xl mb-1 group-hover:text-brand-blue transition-colors">
+                  {match.name}
+                </CardTitle>
+                <p className="text-sm text-gray-600 font-medium">{match.industry}</p>
+              </div>
+            </CardHeader>
+
+            <CardContent>
+              <p className="text-sm text-gray-600 mb-4 line-clamp-2">{match.description}</p>
+              
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-2 text-sm">
+                  <MapPin className="h-4 w-4 text-gray-500" />
+                  <span>{match.location}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Euro className="h-4 w-4 text-gray-500" />
+                  <span>{match.revenue} Umsatz</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Users className="h-4 w-4 text-gray-500" />
+                  <span>{match.employees} Mitarbeiter</span>
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <Button className="flex-1" size="sm">
+                  Profil ansehen
+                </Button>
+                <Button variant="outline" size="sm" className="flex items-center gap-1">
+                  <Heart className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="sm" className="flex items-center gap-1">
+                  <MessageSquare className="h-4 w-4" />
+                </Button>
+              </div>
             </CardContent>
           </Card>
-        </div>
-
-        {/* Matches Grid */}
-        <div className="lg:col-span-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredMatches.map((match) => (
-              <Card key={match.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-lg">{match.name}</CardTitle>
-                      <p className="text-sm text-gray-600">{match.industry}</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center gap-1 mb-1">
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        <span className="font-semibold">{match.matchScore}%</span>
-                      </div>
-                      <Badge className={getStatusColor(match.status)}>
-                        {getStatusText(match.status)}
-                      </Badge>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600 mb-4">{match.description}</p>
-                  
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center gap-2 text-sm">
-                      <MapPin className="h-4 w-4 text-gray-500" />
-                      <span>{match.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Euro className="h-4 w-4 text-gray-500" />
-                      <span>{match.revenue} Umsatz</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Users className="h-4 w-4 text-gray-500" />
-                      <span>{match.employees} Mitarbeiter</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <Button className="flex-1" size="sm">
-                      Profil ansehen
-                    </Button>
-                    <Button variant="outline" size="sm" className="flex items-center gap-1">
-                      <Heart className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" size="sm" className="flex items-center gap-1">
-                      <MessageSquare className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
+
+      {filteredMatches.length === 0 && (
+        <div className="text-center py-12">
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Keine Inserate gefunden</h3>
+          <p className="text-gray-600 mb-4">Versuchen Sie andere Suchbegriffe oder Filter.</p>
+          <Button onClick={resetFilters} variant="outline">
+            Filter zurücksetzen
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

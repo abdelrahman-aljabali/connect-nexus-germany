@@ -6,7 +6,6 @@ import {
   User,
   Heart,
   MessageSquare,
-  CreditCard,
   HelpCircle,
 } from "lucide-react";
 
@@ -32,11 +31,6 @@ const sidebarItems = [
     icon: MessageSquare,
   },
   {
-    title: "Transaktionen",
-    href: "/dashboard/transactions",
-    icon: CreditCard,
-  },
-  {
     title: "Support",
     href: "/dashboard/support",
     icon: HelpCircle,
@@ -47,8 +41,8 @@ const DashboardSidebar = () => {
   const location = useLocation();
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 min-h-screen hidden lg:block">
-      <nav className="p-6">
+    <aside className="w-64 bg-white border-r border-gray-200 min-h-screen hidden lg:block sticky top-0 z-40">
+      <nav className="p-6 h-screen overflow-y-auto">
         <ul className="space-y-2">
           {sidebarItems.map((item) => {
             const isActive = location.pathname === item.href;

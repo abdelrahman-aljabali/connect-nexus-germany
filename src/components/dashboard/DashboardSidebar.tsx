@@ -6,7 +6,6 @@ import {
   User,
   Heart,
   MessageSquare,
-  FileText,
   CreditCard,
   HelpCircle,
 } from "lucide-react";
@@ -31,11 +30,6 @@ const sidebarItems = [
     title: "Nachrichten",
     href: "/dashboard/messages",
     icon: MessageSquare,
-  },
-  {
-    title: "Dokumente",
-    href: "/dashboard/documents",
-    icon: FileText,
   },
   {
     title: "Transaktionen",

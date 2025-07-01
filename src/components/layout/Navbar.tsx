@@ -1,11 +1,23 @@
 
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 import {
   Menu,
   X,
   ChevronDown,
+  User,
+  Settings,
+  LogOut,
+  Home,
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -13,7 +25,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("Max Mustermann");
+  const [userEmail, setUserEmail] = useState("max@beispiel.de");
+  const [userInitials, setUserInitials] = useState("MU");
   const location = useLocation();
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -21,7 +37,19 @@ const Navbar = () => {
   // Check if user is logged in
   useEffect(() => {
     const demoUser = localStorage.getItem("demoUser");
-    setIsLoggedIn(!!demoUser);
+    if (demoUser) {
+      setIsLoggedIn(true);
+      const user = JSON.parse(demoUser);
+      setUserName(user.name || "Max Mustermann");
+      setUserEmail(user.email || "max@beispiel.de");
+      
+      // Generate initials from name
+      const nameParts = user.name?.split(" ") || ["Max", "Mustermann"];
+      const initials = nameParts.map(part => part.charAt(0)).join("").toUpperCase();
+      setUserInitials(initials);
+    } else {
+      setIsLoggedIn(false);
+    }
   }, [location]);
   
   // Close mobile menu when route changes
@@ -87,12 +115,43 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Right side - Login/Logout buttons */}
+        {/* Right side - Login/Profile buttons */}
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
-            <Button onClick={handleLogout} variant="outline" className="rounded-2xl text-sm">
-              Abmelden
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage src="/placeholder-avatar.jpg" alt="Profile" />
+                    <AvatarFallback>{userInitials}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56 bg-white" align="end" forceMount>
+                <div className="flex flex-col space-y-1 p-2">
+                  <p className="text-sm font-medium">{userName}</p>
+                  <p className="text-xs text-gray-500">{userEmail}</p>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                  <Home className="mr-2 h-4 w-4" />
+                  Dashboard
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/dashboard/profile")}>
+                  <User className="mr-2 h-4 w-4" />
+                  Profil
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Einstellungen
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-red-600" onClick={handleLogout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Abmelden
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <>
               <Link to="/auth">
@@ -150,9 +209,17 @@ const Navbar = () => {
             </Link>
             
             {isLoggedIn ? (
-              <Button onClick={handleLogout} variant="outline" className="w-full rounded-2xl mt-4">
-                Abmelden
-              </Button>
+              <div className="flex flex-col space-y-2 mt-4">
+                <Button onClick={() => navigate("/dashboard")} variant="outline" className="w-full rounded-2xl">
+                  Dashboard
+                </Button>
+                <Button onClick={() => navigate("/dashboard/profile")} variant="outline" className="w-full rounded-2xl">
+                  Profil
+                </Button>
+                <Button onClick={handleLogout} variant="outline" className="w-full rounded-2xl text-red-600">
+                  Abmelden
+                </Button>
+              </div>
             ) : (
               <div className="flex flex-col space-y-2 mt-4">
                 <Link to="/auth" onClick={toggleMenu}>

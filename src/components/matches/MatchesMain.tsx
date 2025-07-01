@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -214,15 +215,15 @@ const MatchesMain = () => {
                     placeholder="KI-gestützte Suche: Beschreiben Sie Ihr gewünschtes Unternehmen in Sachsen..."
                     value={filters.search}
                     onChange={(e) => handleSearch(e.target.value)}
-                    className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner transition-all duration-300"
+                    className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner transition-all duration-300 placeholder-white text-white"
                   />
                 </div>
                 
                 <div className="lg:w-60">
                   <Select value={filters.location} onValueChange={(value) => setFilters({...filters, location: value})}>
-                    <SelectTrigger className="h-12 border-2 border-gray-200 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner">
-                      <MapPin className="mr-2 h-4 w-4 text-gray-500" />
-                      <SelectValue placeholder="Alle Standorte" />
+                    <SelectTrigger className="h-12 border-2 border-gray-200 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner text-white">
+                      <MapPin className="mr-2 h-4 w-4 text-white" />
+                      <SelectValue placeholder="Alle Standorte in Sachsen" className="text-white" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-gray-200 rounded-xl shadow-xl">
                       <SelectItem value="all">Alle Standorte in Sachsen</SelectItem>
@@ -318,7 +319,7 @@ const MatchesMain = () => {
                       <Button onClick={resetFilters} variant="outline" className="px-6 py-2 rounded-xl bg-white/90 text-gray-900 border-white/50">
                         Filter zurücksetzen
                       </Button>
-                      <Button className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-xl">
+                      <Button className="bg-brand-blue hover:bg-brand-blue/90 px-6 py-2 rounded-xl">
                         Filter anwenden
                       </Button>
                     </div>
@@ -445,7 +446,7 @@ const MatchesMain = () => {
             <p className="text-gray-600 mb-4 max-w-md mx-auto text-sm">
               Versuchen Sie andere Suchbegriffe oder passen Sie Ihre Filter an, um mehr Ergebnisse zu finden.
             </p>
-            <Button onClick={resetFilters} className="bg-blue-600 hover:bg-blue-700 rounded-xl px-6 py-2 text-sm">
+            <Button onClick={resetFilters} className="bg-brand-blue hover:bg-brand-blue/90 rounded-xl px-6 py-2 text-sm">
               Filter zurücksetzen
             </Button>
           </div>

@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { User, Search, MessageSquare } from "lucide-react";
+import { User, MessageSquare } from "lucide-react";
 
 const actions = [
   {
@@ -10,13 +10,6 @@ const actions = [
     icon: User,
     action: "Profil bearbeiten",
     variant: "default" as const,
-  },
-  {
-    title: "Matches anzeigen",
-    description: "Entdecken Sie potenzielle Partner",
-    icon: Search,
-    action: "Matches ansehen",
-    variant: "outline" as const,
   },
   {
     title: "Nachrichten bearbeiten",
@@ -29,14 +22,14 @@ const actions = [
 
 const QuickActions = () => {
   return (
-    <Card className="shadow-soft">
+    <Card className="shadow-soft h-fit">
       <CardHeader>
         <CardTitle className="text-lg font-bold text-gray-900">
           Schnellaktionen
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {actions.map((action, index) => (
             <div
               key={index}

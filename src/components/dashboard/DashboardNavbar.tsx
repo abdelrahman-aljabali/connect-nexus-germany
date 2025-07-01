@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Bell, LogOut, Settings, User, Menu } from "lucide-react";
+import { Bell, LogOut, Settings, User, Menu, Home } from "lucide-react";
 
 const DashboardNavbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,7 +52,7 @@ const DashboardNavbar = () => {
             <Menu className="h-5 w-5" />
           </Button>
           
-          <Link to="/dashboard" className="flex items-center">
+          <Link to="/dashboard" className="flex items-center lg:ml-0">
             <img
               src="/logo.png"
               className="mr-3 h-8 sm:h-10"
@@ -87,7 +87,11 @@ const DashboardNavbar = () => {
                 <p className="text-xs text-gray-500">{userEmail}</p>
               </div>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                <Home className="mr-2 h-4 w-4" />
+                Dashboard
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/dashboard/profile")}>
                 <User className="mr-2 h-4 w-4" />
                 Profil
               </DropdownMenuItem>

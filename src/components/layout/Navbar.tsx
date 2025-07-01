@@ -55,8 +55,8 @@ const Navbar = () => {
           <span className="font-bold text-xl md:text-2xl text-brand-blue">Connect<span className="text-brand-teal">.</span>Now</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+        {/* Desktop Navigation - Centered */}
+        <div className="hidden md:flex items-center space-x-6 lg:space-x-8 absolute left-1/2 transform -translate-x-1/2">
           <Link to="/" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/' ? 'text-brand-blue font-medium' : ''}`}>
             Start
           </Link>
@@ -85,28 +85,29 @@ const Navbar = () => {
           <Link to="/contact" className={`text-gray-700 hover:text-brand-blue transition-colors ${location.pathname === '/contact' ? 'text-brand-blue font-medium' : ''}`}>
             Kontakt
           </Link>
-          
-          {isLoggedIn && (
+        </div>
+
+        {/* Right side - Login/Logout buttons */}
+        <div className="hidden md:flex items-center space-x-4">
+          {isLoggedIn ? (
             <Button onClick={handleLogout} variant="outline" className="rounded-2xl text-sm">
               Abmelden
             </Button>
+          ) : (
+            <>
+              <Link to="/auth">
+                <Button variant="outline" className="rounded-2xl text-sm">
+                  Anmelden
+                </Button>
+              </Link>
+              <Link to="/auth?register=true">
+                <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl text-sm">
+                  Registrieren
+                </Button>
+              </Link>
+            </>
           )}
         </div>
-
-        {!isLoggedIn && (
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/auth">
-              <Button variant="outline" className="rounded-2xl text-sm">
-                Anmelden
-              </Button>
-            </Link>
-            <Link to="/auth?register=true">
-              <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white rounded-2xl text-sm">
-                Registrieren
-              </Button>
-            </Link>
-          </div>
-        )}
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">

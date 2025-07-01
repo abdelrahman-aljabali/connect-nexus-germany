@@ -3,6 +3,7 @@ import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
 import QuickStats from "@/components/dashboard/QuickStats";
 import ProcessIndicator from "@/components/dashboard/ProcessIndicator";
 import QuickActions from "@/components/dashboard/QuickActions";
+import NewMatches from "@/components/dashboard/NewMatches";
 
 const DashboardMain = () => {
   return (
@@ -11,7 +12,10 @@ const DashboardMain = () => {
         <WelcomeBanner />
         <QuickStats />
         <ProcessIndicator />
-        <QuickActions />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <QuickActions />
+          <NewMatches />
+        </div>
       </div>
     </main>
   );

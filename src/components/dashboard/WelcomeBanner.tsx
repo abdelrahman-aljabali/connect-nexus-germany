@@ -19,7 +19,7 @@ const WelcomeBanner = () => {
       <CardContent className="p-6 lg:p-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h1 className="text-2xl lg:text-3xl font-bold mb-2">
+            <h1 className="text-2xl lg:text-3xl font-bold mb-2 text-white">
               Willkommen zurück, {userName}!
             </h1>
             <p className="text-blue-100 text-lg">

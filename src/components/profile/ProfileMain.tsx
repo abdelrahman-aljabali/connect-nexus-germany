@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,7 +16,7 @@ const ProfileMain = () => {
     // Seller data
     businessName: "TechVision Solutions GmbH",
     industry: "Software Entwicklung",
-    location: "Berlin",
+    location: "Leipzig",
     revenue: "2,8M",
     ebit: "450K",
     employees: "18",
@@ -27,7 +26,7 @@ const ProfileMain = () => {
     // Buyer data
     name: "Max Mustermann",
     industryInterests: "Software, Technologie",
-    regionPreferences: "Berlin, München, Hamburg",
+    regionPreferences: "Leipzig, Dresden, Chemnitz",
     availableCapital: "5M",
     experience: "15 Jahre im Technologiesektor",
     timeline: "6-12 Monate"
@@ -59,6 +58,13 @@ const ProfileMain = () => {
     { name: "Geschäftsplan.pdf", type: "Strategisch", date: "10.03.2024", access: "Geteilt" },
     { name: "Handelsregisterauszug.pdf", type: "Legal", date: "05.03.2024", access: "Verifiziert" },
     { name: "Steuererklärung_2023.pdf", type: "Finanzen", date: "01.03.2024", access: "Privat" }
+  ];
+
+  const buyerDocuments = [
+    { name: "Identitätsnachweis.pdf", type: "Identität", date: "20.03.2024", access: "Verifiziert" },
+    { name: "Finanzierungsnachweis.pdf", type: "Finanzen", date: "18.03.2024", access: "Privat" },
+    { name: "Referenzen.pdf", type: "Beruflich", date: "15.03.2024", access: "Geteilt" },
+    { name: "Bankbestätigung.pdf", type: "Finanzen", date: "10.03.2024", access: "Verifiziert" }
   ];
 
   useEffect(() => {
@@ -288,86 +294,124 @@ const ProfileMain = () => {
 
         {/* Buyer Profile Tab */}
         <TabsContent value="buyer" className="space-y-6">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle>Käuferinformationen & Präferenzen</CardTitle>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsEditingBuyer(!isEditingBuyer)}
-              >
-                <Edit className="h-4 w-4 mr-2" />
-                {isEditingBuyer ? "Abbrechen" : "Bearbeiten"}
-              </Button>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Name</label>
-                  <Input
-                    value={profileData.name}
-                    readOnly={!isEditingBuyer}
-                    onChange={(e) => setProfileData({...profileData, name: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Verfügbares Kapital</label>
-                  <Input
-                    value={profileData.availableCapital}
-                    readOnly={!isEditingBuyer}
-                    onChange={(e) => setProfileData({...profileData, availableCapital: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Brancheninteressen</label>
-                  <Input
-                    value={profileData.industryInterests}
-                    readOnly={!isEditingBuyer}
-                    onChange={(e) => setProfileData({...profileData, industryInterests: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Regionspräferenzen</label>
-                  <Input
-                    value={profileData.regionPreferences}
-                    readOnly={!isEditingBuyer}
-                    onChange={(e) => setProfileData({...profileData, regionPreferences: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Zeitrahmen</label>
-                  <Select value={profileData.timeline} disabled={!isEditingBuyer}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white">
-                      <SelectItem value="3-6 Monate">3-6 Monate</SelectItem>
-                      <SelectItem value="6-12 Monate">6-12 Monate</SelectItem>
-                      <SelectItem value="12+ Monate">12+ Monate</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Erfahrung & Hintergrund</label>
-                <Textarea
-                  value={profileData.experience}
-                  readOnly={!isEditingBuyer}
-                  onChange={(e) => setProfileData({...profileData, experience: e.target.value})}
-                  rows={4}
-                />
-              </div>
-
-              {isEditingBuyer && (
-                <div className="flex gap-2 pt-4">
-                  <Button onClick={handleSaveBuyer}>Speichern</Button>
-                  <Button variant="outline" onClick={() => setIsEditingBuyer(false)}>
-                    Abbrechen
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle>Käuferinformationen & Präferenzen</CardTitle>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsEditingBuyer(!isEditingBuyer)}
+                  >
+                    <Edit className="h-4 w-4 mr-2" />
+                    {isEditingBuyer ? "Abbrechen" : "Bearbeiten"}
                   </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Name</label>
+                      <Input
+                        value={profileData.name}
+                        readOnly={!isEditingBuyer}
+                        onChange={(e) => setProfileData({...profileData, name: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Verfügbares Kapital</label>
+                      <Input
+                        value={profileData.availableCapital}
+                        readOnly={!isEditingBuyer}
+                        onChange={(e) => setProfileData({...profileData, availableCapital: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Brancheninteressen</label>
+                      <Input
+                        value={profileData.industryInterests}
+                        readOnly={!isEditingBuyer}
+                        onChange={(e) => setProfileData({...profileData, industryInterests: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Regionspräferenzen</label>
+                      <Input
+                        value={profileData.regionPreferences}
+                        readOnly={!isEditingBuyer}
+                        onChange={(e) => setProfileData({...profileData, regionPreferences: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Zeitrahmen</label>
+                      <Select value={profileData.timeline} disabled={!isEditingBuyer}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="bg-white">
+                          <SelectItem value="3-6 Monate">3-6 Monate</SelectItem>
+                          <SelectItem value="6-12 Monate">6-12 Monate</SelectItem>
+                          <SelectItem value="12+ Monate">12+ Monate</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Erfahrung & Hintergrund</label>
+                    <Textarea
+                      value={profileData.experience}
+                      readOnly={!isEditingBuyer}
+                      onChange={(e) => setProfileData({...profileData, experience: e.target.value})}
+                      rows={4}
+                    />
+                  </div>
+
+                  {isEditingBuyer && (
+                    <div className="flex gap-2 pt-4">
+                      <Button onClick={handleSaveBuyer}>Speichern</Button>
+                      <Button variant="outline" onClick={() => setIsEditingBuyer(false)}>
+                        Abbrechen
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Buyer Documents Section */}
+            <div>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="h-5 w-5" />
+                    Dokumente
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full mb-4" variant="outline">
+                    <Upload className="h-4 w-4 mr-2" />
+                    Dokument hochladen
+                  </Button>
+                  
+                  <div className="space-y-3">
+                    {buyerDocuments.map((doc, index) => (
+                      <div key={index} className="border rounded-lg p-3">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <p className="font-medium text-sm">{doc.name}</p>
+                            <p className="text-xs text-gray-500">{doc.date}</p>
+                          </div>
+                          <Badge variant="outline" className="text-xs">
+                            {doc.access}
+                          </Badge>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </TabsContent>
       </Tabs>
     </div>

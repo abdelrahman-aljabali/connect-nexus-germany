@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -164,9 +163,7 @@ const MatchesMain = () => {
   };
 
   const handleBusinessClick = (business: any) => {
-    // This will handle the business click functionality
     console.log("Business clicked:", business);
-    // Here you can navigate to a detailed view or open a modal
   };
 
   return (
@@ -184,7 +181,7 @@ const MatchesMain = () => {
             <div className="mb-6">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
                 Ein Unternehmen zum 
-                <span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent"> Verkauf </span>
+                <span className="text-brand-blue"> Verkauf </span>
                 finden
               </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
@@ -207,7 +204,7 @@ const MatchesMain = () => {
 
           {/* Enhanced Search Card with Blur Background */}
           <div className="relative">
-            <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border border-white/20">
+            <div className="relative bg-white/20 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border border-white/20">
               {/* Main Search Bar */}
               <div className="flex flex-col lg:flex-row gap-4 mb-4">
                 <div className="flex-1 relative group">
@@ -217,13 +214,13 @@ const MatchesMain = () => {
                     placeholder="KI-gestützte Suche: Beschreiben Sie Ihr gewünschtes Unternehmen in Sachsen..."
                     value={filters.search}
                     onChange={(e) => handleSearch(e.target.value)}
-                    className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/95 backdrop-blur-sm shadow-inner transition-all duration-300"
+                    className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner transition-all duration-300"
                   />
                 </div>
                 
                 <div className="lg:w-60">
                   <Select value={filters.location} onValueChange={(value) => setFilters({...filters, location: value})}>
-                    <SelectTrigger className="h-12 border-2 border-gray-200 rounded-2xl bg-white/95 backdrop-blur-sm shadow-inner">
+                    <SelectTrigger className="h-12 border-2 border-gray-200 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner">
                       <MapPin className="mr-2 h-4 w-4 text-gray-500" />
                       <SelectValue placeholder="Alle Standorte" />
                     </SelectTrigger>
@@ -240,7 +237,7 @@ const MatchesMain = () => {
                   </Select>
                 </div>
                 
-                <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-5 font-bold rounded-2xl shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                <Button className="bg-brand-blue hover:bg-brand-blue/90 text-white px-8 py-5 font-bold rounded-2xl shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                   <Search className="mr-2 h-5 w-5" />
                   Suchen
                 </Button>
@@ -379,8 +376,8 @@ const MatchesMain = () => {
                 </div>
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-blue-600/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                  <Button className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-4 py-1 text-sm font-semibold shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                <div className="absolute inset-0 bg-white/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                  <Button className="bg-white text-brand-blue hover:bg-gray-100 rounded-full px-4 py-1 text-sm font-semibold shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300">
                     <Eye className="mr-1 h-3 w-3" />
                     Details ansehen
                   </Button>
@@ -388,7 +385,7 @@ const MatchesMain = () => {
               </div>
 
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg mb-1 group-hover:text-blue-600 transition-colors line-clamp-1">
+                <CardTitle className="text-lg mb-1 group-hover:text-brand-blue transition-colors line-clamp-1">
                   {match.name}
                 </CardTitle>
                 <p className="text-xs text-gray-600 font-medium bg-gray-100 rounded-full px-2 py-1 inline-block w-fit">
@@ -423,7 +420,7 @@ const MatchesMain = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-xl shadow-lg text-sm" size="sm">
+                  <Button className="flex-1 bg-brand-blue hover:bg-brand-blue/90 rounded-xl shadow-lg text-sm" size="sm">
                     Profil ansehen
                   </Button>
                   <Button variant="outline" size="sm" className="flex items-center gap-1 border-2 hover:bg-red-50 hover:border-red-200 rounded-xl">

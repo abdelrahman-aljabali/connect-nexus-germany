@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -54,12 +53,12 @@ const DashboardNavbar = () => {
           
           <Link to="/dashboard" className="flex items-center lg:ml-0">
             <img
-              src="/logo.png"
-              className="mr-3 h-8 sm:h-10"
+              src="/lovable-uploads/d5174b88-b2ec-45fc-8644-4dc9a254b3f6.png"
+              className="mr-3 h-8 w-8"
               alt="Connect.Now Logo"
             />
             <span className="self-center text-xl font-bold whitespace-nowrap text-brand-blue">
-              Connect.Now
+              Connect<span className="text-brand-teal">.</span>Now
             </span>
           </Link>
         </div>

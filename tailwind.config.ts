@@ -53,10 +53,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Connect.Now brand colors
+        // Connect.Now brand colors - Updated to match the blue scheme
         brand: {
-          blue: "#1E3A8A",
-          teal: "#14B8A6",
+          blue: "#2d83fb",
+          teal: "#5ba7fb", // Lighter blue as secondary
           gray: {
             100: "#F1F1F1",
             200: "#E5E5E5",

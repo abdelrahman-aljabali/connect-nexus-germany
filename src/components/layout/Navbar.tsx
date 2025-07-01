@@ -80,6 +80,11 @@ const Navbar = () => {
     <nav className={`bg-white py-3 md:py-4 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}>
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to={isLoggedIn ? "/dashboard" : "/"} className="flex items-center">
+          <img 
+            src="/lovable-uploads/d5174b88-b2ec-45fc-8644-4dc9a254b3f6.png" 
+            alt="Connect.Now" 
+            className="h-8 w-8 mr-2"
+          />
           <span className="font-bold text-xl md:text-2xl text-brand-blue">Connect<span className="text-brand-teal">.</span>Now</span>
         </Link>
 
@@ -239,6 +244,3 @@ const Navbar = () => {
       )}
     </nav>
   );
-};
-
-export default Navbar;

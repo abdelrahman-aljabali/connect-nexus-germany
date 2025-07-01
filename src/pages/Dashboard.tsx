@@ -1,7 +1,7 @@
 
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
-import Navbar from "@/components/layout/Navbar";
+import DashboardNavbar from "@/components/dashboard/DashboardNavbar";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import DashboardMain from "@/components/dashboard/DashboardMain";
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
       </Helmet>
       
       <div className="min-h-screen bg-gray-50">
-        <Navbar />
+        <DashboardNavbar />
         
         <div className="flex">
           <DashboardSidebar />

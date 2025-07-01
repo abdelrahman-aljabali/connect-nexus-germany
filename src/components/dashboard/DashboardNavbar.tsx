@@ -40,9 +40,8 @@ const DashboardNavbar = () => {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-200 px-4 lg:px-6 py-3 w-full">
-      <div className="flex justify-between items-center w-full">
-        {/* Left side - Logo */}
+    <nav className="bg-white border-b border-gray-200 px-4 lg:px-6 py-3">
+      <div className="flex flex-wrap justify-between items-center">
         <div className="flex items-center">
           <Button
             variant="ghost"
@@ -53,14 +52,18 @@ const DashboardNavbar = () => {
             <Menu className="h-5 w-5" />
           </Button>
           
-          <Link to="/dashboard" className="flex items-center">
-            <span className="font-bold text-xl md:text-2xl text-brand-blue">
-              Connect<span className="text-brand-teal">.</span>Now
+          <Link to="/dashboard" className="flex items-center lg:ml-0">
+            <img
+              src="/logo.png"
+              className="mr-3 h-8 sm:h-10"
+              alt="Connect.Now Logo"
+            />
+            <span className="self-center text-xl font-bold whitespace-nowrap text-brand-blue">
+              Connect.Now
             </span>
           </Link>
         </div>
         
-        {/* Right side - Notifications and Profile */}
         <div className="flex items-center space-x-4">
           <Button variant="ghost" size="icon" className="relative">
             <Bell className="h-5 w-5" />

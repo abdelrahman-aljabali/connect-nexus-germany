@@ -180,11 +180,14 @@ const MatchesMain = () => {
           <div className="text-center mb-12">
             {/* Main Title */}
             <div className="mb-6">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
-                Ein Unternehmen zum 
-                <span className="text-brand-blue"> Verkauf </span>
-                finden
-              </h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+  Ein Unternehmen zum{' '}
+  <span className="text-transparent bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-500 bg-clip-text font-extrabold tracking-wide drop-shadow-md">
+    Verkauf
+  </span>{' '}
+  finden
+</h1>
+
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
                 Entdecken Sie Sachsens größten Marktplatz für Unternehmensverkäufe mit KI-gestützter Suche
               </p>
@@ -211,12 +214,15 @@ const MatchesMain = () => {
                 <div className="flex-1 relative group">
                   <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-500 h-5 w-5 z-10" />
                   <Input
-                    type="text"
-                    placeholder="KI-gestützte Suche: Beschreiben Sie Ihr gewünschtes Unternehmen in Sachsen..."
-                    value={filters.search}
-                    onChange={(e) => handleSearch(e.target.value)}
-                    className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner transition-all duration-300 placeholder-white text-white"
-                  />
+  type="text"
+  placeholder="KI-gestützte Suche: Beschreiben Sie Ihr gewünschtes Unternehmen in Sachsen..."
+  value={filters.search}
+  onChange={(e) => handleSearch(e.target.value)}
+  className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner transition-all duration-300 placeholder:text-white text-white"
+/>
+
+
+
                 </div>
                 
                 <div className="lg:w-60">

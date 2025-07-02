@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -180,14 +179,13 @@ const MatchesMain = () => {
           <div className="text-center mb-12">
             {/* Main Title */}
             <div className="mb-6">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
-  Ein Unternehmen zum{' '}
-  <span className="text-transparent bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-500 bg-clip-text font-extrabold tracking-wide drop-shadow-md">
-    Verkauf
-  </span>{' '}
-  finden
-</h1>
-
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+                Ein Unternehmen zum{' '}
+                <span className="text-brand-blue font-extrabold tracking-wide drop-shadow-md">
+                  Verkauf
+                </span>{' '}
+                finden
+              </h1>
               <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
                 Entdecken Sie Sachsens größten Marktplatz für Unternehmensverkäufe mit KI-gestützter Suche
               </p>

@@ -168,11 +168,11 @@ const MatchesMain = () => {
 
   return (
     <div className="flex-1">
-      {/* Hero Section */}
+      {/* Hero Section with Saxon Industrial Background */}
       <div 
         className="relative min-h-[500px] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop')"
+          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=1080&fit=crop')"
         }}
       >
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
@@ -212,15 +212,12 @@ const MatchesMain = () => {
                 <div className="flex-1 relative group">
                   <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-500 h-5 w-5 z-10" />
                   <Input
-  type="text"
-  placeholder="KI-gestützte Suche: Beschreiben Sie Ihr gewünschtes Unternehmen in Sachsen..."
-  value={filters.search}
-  onChange={(e) => handleSearch(e.target.value)}
-  className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner transition-all duration-300 placeholder:text-white text-white"
-/>
-
-
-
+                    type="text"
+                    placeholder="KI-gestützte Suche: Beschreiben Sie Ihr gewünschtes Unternehmen in Sachsen..."
+                    value={filters.search}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className="relative pl-12 pr-4 py-5 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl bg-white/20 backdrop-blur-sm shadow-inner transition-all duration-300 placeholder:text-white text-white"
+                  />
                 </div>
                 
                 <div className="lg:w-60">

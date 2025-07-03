@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -19,8 +20,8 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-brand-blue to-brand-teal rounded-2xl blur opacity-20"></div>
             <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
               <img
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
-                alt="Business succession meeting"
+                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
+                alt="Business succession meeting with executives"
                 className="w-full h-64 object-cover"
               />
             </div>
@@ -45,7 +46,7 @@ const Hero = () => {
           {/* Description + Buttons */}
           <div className="space-y-6">
             <p className="text-lg text-gray-600">
-              Connect.Now bringt Unternehmer, die ihr Geschäft übergeben
+              ConnectNow bringt Unternehmer, die ihr Geschäft übergeben
               möchten, mit qualifizierten Nachfolgern zusammen – diskret, sicher
               und professionell.
             </p>
@@ -95,7 +96,7 @@ const Hero = () => {
               <span className="text-brand-blue">einfach</span> gemacht
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl">
-              Connect.Now bringt Unternehmer, die ihr Geschäft übergeben
+              ConnectNow bringt Unternehmer, die ihr Geschäft übergeben
               möchten, mit qualifizierten Nachfolgern zusammen – diskret, sicher
               und professionell.
             </p>
@@ -141,8 +142,8 @@ const Hero = () => {
 
             <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
               <img
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
-                alt="Business succession meeting"
+                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
+                alt="Business succession meeting with executives"
                 className="w-full h-96 object-cover"
               />
             </div>

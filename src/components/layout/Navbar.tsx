@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -81,10 +82,10 @@ const Navbar = () => {
         <Link to={isLoggedIn ? "/dashboard" : "/"} className="flex items-center">
           <img 
             src="/lovable-uploads/5d99064c-2b54-4af1-b329-4a61010e7d05.png" 
-            alt="Connect.Now Icon" 
+            alt="ConnectNow Icon" 
             className="h-8 w-8 mr-3"
           />
-          <span className="font-bold text-xl md:text-2xl text-brand-blue">Connect<span className="text-brand-blue">.</span>Now</span>
+          <span className="font-bold text-xl md:text-2xl text-brand-blue">ConnectNow</span>
         </Link>
 
         {/* Desktop Navigation - Centered */}

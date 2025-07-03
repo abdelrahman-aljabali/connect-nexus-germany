@@ -31,7 +31,7 @@ const AboutHero = () => {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight animate-fade-in">
-            Über Connect<span className="text-brand-teal">.</span>Now
+            Über ConnectNow
           </h1>
 
           <p

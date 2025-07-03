@@ -20,8 +20,8 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-brand-blue to-brand-teal rounded-2xl blur opacity-20"></div>
             <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
               <img
-                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
-                alt="Business succession meeting with executives"
+                src="/lovable-uploads/99b83dc1-c164-48ec-a96e-7e663479a385.png"
+                alt="Leipzig cityscape with business district"
                 className="w-full h-64 object-cover"
               />
             </div>
@@ -142,8 +142,8 @@ const Hero = () => {
 
             <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
               <img
-                src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
-                alt="Business succession meeting with executives"
+                src="/lovable-uploads/99b83dc1-c164-48ec-a96e-7e663479a385.png"
+                alt="Leipzig cityscape with business district"
                 className="w-full h-96 object-cover"
               />
             </div>
